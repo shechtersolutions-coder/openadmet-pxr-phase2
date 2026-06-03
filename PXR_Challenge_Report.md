@@ -252,3 +252,50 @@ Purpose: Training Chemprop MPNN models, generating predictions for ensemble, run
 conda env create -f pxr_chemprop311.yml
 python -m ipykernel install --user --name pxr_chemprop311
 ```
+
+### 9.3 Reproducibility Notes
+
+Both YAML files (oadmet_pxr_tutorial.yml and pxr_chemprop311.yml) are included in the repository root.
+
+Each notebook explicitly specifies the kernel used.
+
+The Chemprop environment is CPU‑only but compatible with CUDA if installed.
+
+The LightGBM environment contains the full RDKit + descriptor stack used for feature engineering.
+
+openadmet-pxr-phase2/
+├── oadmet_pxr_tutorial.yml
+├── pxr_chemprop311.yml
+├── PXR_Challenge_Report.md
+├── inputs/
+├── notebook/
+├── outputs/
+└── ...
+
+### 9.4 Why Two Separate Environments Were Needed
+
+Two conda environments were used because the project required two fundamentally
+different computational stacks:
+
+1. **Feature engineering + LightGBM workflow**  
+   RDKit, LightGBM, Optuna, and the descriptor-generation libraries have strict
+   version constraints and depend on a large scientific stack (HDF5, Cairo, NetCDF,
+   MKL). These packages are not fully compatible with the PyTorch/Chemprop ecosystem.
+   The `oadmet_pxr_tutorial` environment isolates this chemistry-heavy toolchain.
+
+2. **Chemprop + PyTorch workflow**  
+   Chemprop requires a modern PyTorch build, a different RDKit version, and a
+   lighter scientific stack. Installing Chemprop and PyTorch alongside the full
+   RDKit/LightGBM environment leads to dependency conflicts. The
+   `pxr_chemprop311` environment provides a clean, stable space for training the
+   MPNN models.
+
+Separating the environments ensured:
+- No dependency conflicts between RDKit and PyTorch  
+- Reproducible results for both modeling pipelines  
+- Faster, more stable training for Chemprop  
+- A clean LightGBM/RDKit environment for descriptor generation and ensembling
+
+This two-environment design mirrors common practice in molecular ML workflows,
+where cheminformatics and deep learning stacks rarely coexist cleanly in a single
+environment.
