@@ -199,3 +199,56 @@ PXR-Challenge-Tutorial/
 ├── pxr_lgbm_final_blinded.csv       # LightGBM blinded predictions
 └── pxr_submission_best_ensemble.csv # Final submission file
 ```
+
+---
+
+## 9. Computational Environment & Kernels
+
+All modeling and analysis were performed using two separate conda environments, each
+registered as a Jupyter kernel. This separation ensured reproducibility and avoided
+dependency conflicts between the LightGBM/RDKit workflow and the Chemprop/PyTorch
+workflow.
+
+---
+
+### 9.1 LightGBM + RDKit Environment (`oadmet_pxr_tutorial` kernel)
+
+**Purpose:**  
+Feature generation (RDKit), LightGBM training, descriptor computation, Optuna tuning.
+
+**Key characteristics:**
+- Python 3.14
+- RDKit 2026.03.1
+- LightGBM 4.6.0 (CPU)
+- NumPy, Pandas, Scikit-learn
+- Optuna 4.8.0
+- Extensive scientific stack (HDF5, NetCDF, Cairo, Matplotlib, Seaborn)
+- Includes Mordred, MHFP, UMAP, XGBoost, CatBoost, and many cheminformatics utilities
+
+**Environment recreation:**
+```bash
+conda env create -f oadmet_pxr_tutorial.yml
+python -m ipykernel install --user --name oadmet_pxr_tutorial
+```
+
+
+### 9.2 Chemprop + PyTorch Environment (pxr_chemprop311 kernel)
+
+Purpose: Training Chemprop MPNN models, generating predictions for ensemble, running PyTorch models.
+
+**Key packages:**
+
+- Python 3.11
+- Chemprop 2.2.3
+- PyTorch 2.1.2 (CPU-only)
+- RDKit 2025.09.6
+- LightGBM 4.6.0 (CPU)
+- NumPy, Pandas,, Scikit-learn
+- Full scientific + plotting stack (Matplotlib, Seaborn)
+- Includes Mordred, MHFP, UMAP, Optuna, Py3Dmol, Descriptastorus
+
+**Environment recreation:**
+```bash
+conda env create -f pxr_chemprop311.yml
+python -m ipykernel install --user --name pxr_chemprop311
+```
