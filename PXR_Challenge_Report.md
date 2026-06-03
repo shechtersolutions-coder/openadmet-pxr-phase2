@@ -263,6 +263,7 @@ The Chemprop environment is CPU‑only but compatible with CUDA if installed.
 
 The LightGBM environment contains the full RDKit + descriptor stack used for feature engineering.
 
+```markdown
 openadmet-pxr-phase2/
 ├── oadmet_pxr_tutorial.yml
 ├── pxr_chemprop311.yml
@@ -270,7 +271,6 @@ openadmet-pxr-phase2/
 ├── inputs/
 ├── notebook/
 ├── outputs/
-└── ...
 
 ### 9.4 Why Two Separate Environments Were Needed
 
