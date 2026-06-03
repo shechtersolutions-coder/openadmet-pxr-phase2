@@ -16,7 +16,7 @@ set of dose-response data from Octant Bio.
 | `pxr-challenge_TRAIN.csv` | Primary dose-response training set | 4,139 |
 | `pxr-challenge_96-compound-uscale-semi-pure_TRAIN.csv` | Semi-pure assay data | 96 |
 | `pxr-challenge_single_concentration_TRAIN.csv` | Single-concentration screen | 21,003 |
-| `pxr-challenge_counter-assay_TRAIN.csv` | PXR-null counter assay | — |
+| `pxr-challenge_counter-assay_TRAIN.csv` | PXR-null counter assay | 2,859 |
 | `pxr-challenge_TEST_PHASE_1_UNBLINDED.csv` | Unblinded test set (evaluation) | 253 |
 | `pxr-challenge_TEST_BLINDED.csv` | Blinded test set (submission) | 513 |
 
